@@ -1,0 +1,154 @@
+body {
+  font-family: 'Orbitron', sans-serif;
+  font-size: larger;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+.introcontainer {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
+header {
+  background-color: #000000;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+header button {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 0 20px;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.swiper-container {
+  width: 100%;
+  height: calc(100vh - 50px); /* Subtrai a altura do cabeçalho */
+  background: rgb(10, 10, 11);
+  position: relative;
+}
+
+.swiper-slide {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(237, 240, 240);
+}
+
+.menu-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centralize verticalmente */
+    text-align: center; /* Centralize horizontalmente */
+    color: rgb(0, 0, 0);
+    transition: transform 0.2s;
+    width: 200px; /* Define a largura fixa para todas as opções */
+  }
+
+.menu-option:hover {
+  transform: scale(1.5);
+}
+
+.menu-option img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;  
+}
+
+.menu-option h2 {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+/* Adicione as setas laterais */
+.swiper-button-next, .swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s;
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.swiper-button-prev {
+  left: 10px;
+}
+
+.swiper-button-next {
+  right: 10px;
+}
+
+.swiper-container {
+    width: 80%; /* Reduz a largura para 80% do dispositivo */
+    height: 80vh; /* Reduz a altura para 80% da altura do dispositivo */
+    background: rgb(10, 10, 11);
+    position: relative;
+  }
+  
+
+@media (max-width: 768px) {
+    /* Styles for screens with a maximum width of 768px */
+  
+    body {
+      font-size: 16px;
+    }
+  
+    header button {
+      font-size: 16px;
+      margin: 0 10px;
+    }
+  
+    .swiper-container {
+      height: 40vh;
+    }
+  
+    .menu-option {
+      max-width: 150px;
+    }
+  
+    /* Add more styles specific to screens with a maximum width of 768px if needed */
+  }
+  
+
+  @media (max-width: 768px) {
+    /* Estilos específicos para telas menores */
+    .form-group label {
+      font-size: 14px;
+    }
+  
+    .form-group input {
+      font-size: 14px;
+    }
+  }
+  
+  .color-box {
+    width: 30px;
+    height: 100px;
+    border: 1px solid #000;
+    margin: 5px;
+
+    
+}

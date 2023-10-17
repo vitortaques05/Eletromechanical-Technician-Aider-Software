@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Resistência</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+  <div class="introcontainer">
+
+    <header>
+        <button id="menu-principal">MENU PRINCIPAL</button>
+        <button id="sobre-nos">SOBRE NÓS</button>
+    </header>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Calcula Resistência Equivalente </h1>
+
+      <form id="resistance-form">
+        <div class="form-group">
+          <label for="resistance">Valor da Resistência (Ohms):</label>
+          <input type="number" class="form-control" id="resistance" placeholder="Insira o valor da resistência">
+        </div>
+        <button type="button" class="btn btn-dark btn-lg mb-3" id="add-resistance">Adicionar Resistência</button>
+        <button type="button" class="btn btn-primary btn-lg mb-3" id="calculate-series">Calcular em Série</button>
+        <button type="button" class="btn btn-primary btn-lg mb-3" id="calculate-parallel">Calcular em Paralelo</button>
+      </form>
+      <div class="mt-3">
+        <h5>Resistências Adicionadas:</h5>
+        <ul id="resistances-list"></ul>
+        <p>Resistência Equivalente em Série: <span id="series-result"></span> Ohms</p>
+        <p>Resistência Equivalente em Paralelo: <span id="parallel-result"></span> Ohms</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const resistances = [];
+
+      document.getElementById("add-resistance").addEventListener("click", function() {
+        const resistanceValue = parseFloat(document.getElementById("resistance").value);
+        if (!isNaN(resistanceValue)) {
+          resistances.push(resistanceValue);
+          document.getElementById("resistances-list").innerHTML += `<li>${resistanceValue} Ohms <button class="btn btn-danger btn-sm ml-2" onclick="removeResistance(${resistances.length - 1})">Remover</button></li>`;
+        }
+      });
+
+      document.getElementById("calculate-series").addEventListener("click", function() {
+        const result = resistances.reduce((acc, resistance) => acc + resistance, 0);
+        document.getElementById("series-result").textContent = result.toFixed(2);
+      });
+
+      document.getElementById("calculate-parallel").addEventListener("click", function() {
+        const result = 1 / resistances.reduce((acc, resistance) => acc + 1 / resistance, 0);
+        document.getElementById("parallel-result").textContent = result.toFixed(2);
+      });
+
+      // Função para remover uma resistência da lista
+      window.removeResistance = function(index) {
+        resistances.splice(index, 1);
+        updateResistancesList();
+      };
+
+      // Função para atualizar a lista de resistências
+      function updateResistancesList() {
+        const list = document.getElementById("resistances-list");
+        list.innerHTML = "";
+        resistances.forEach((resistance, index) => {
+          list.innerHTML += `<li>${resistance} Ohms <button class="btn btn-danger btn-sm ml-2" onclick="removeResistance(${index})">Remover</button></li>`;
+        });
+      }
+    });
+  </script>
+    <script src="functions.js"></script>
+
+</body>
+</html>
